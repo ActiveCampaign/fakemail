@@ -27,6 +27,10 @@ module FakeMail
         address_with_id(address: address, id: id)
       end
 
+      def addresses_unique(address: Config.defaults.email_address, id_length: 8, base_id: '', count: 0)
+        Array.new(count) { address_unique(address: address, length: length, id_length: id_length, base_id: base_id) }
+      end
+
       def addresses_with_id(address: Config.defaults.email_address, id: '', count: 1)
         Array.new(count).map { address.gsub('@', "+#{id}-#{Faker::Number.number(digits: 8)}@") }
       end
