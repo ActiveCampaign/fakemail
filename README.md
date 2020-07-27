@@ -26,7 +26,7 @@ Please leave all comments, bugs, requests and issues on the Issues page.
 
 ## License
 
-Configurator library is released under the [MIT](http://www.opensource.org/licenses/mit-license.php) license. 
+FakeMail library is released under the [MIT](http://www.opensource.org/licenses/mit-license.php) license. 
 
 ## Copyright
 
