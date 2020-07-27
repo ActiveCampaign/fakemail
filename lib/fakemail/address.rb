@@ -28,7 +28,7 @@ module FakeMail
       end
 
       def addresses_unique(address: Config.defaults.email_address, id_length: 8, base_id: '', count: 0)
-        Array.new(count) { address_unique(address: address, length: length, id_length: id_length, base_id: base_id) }
+        Array.new(count) { address_unique(address: address, id_length: id_length, base_id: base_id) }
       end
 
       def addresses_with_id(address: Config.defaults.email_address, id: '', count: 1)
