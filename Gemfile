@@ -2,10 +2,13 @@
 
 source 'https://rubygems.org'
 
+gem 'wbconfigurator'
 gem 'faker'
-gem 'configurator', git: 'https://github.com/wildbit/configurator.git'
 gem 'mail', '~>2.7.1'
 gem 'postmark', '~>1.21.1'
-gem 'pry'
-gem 'rspec'
+
+group :test do
+  gem 'rspec'
+  gem 'pry'
+end
 

@@ -26,14 +26,14 @@ module FakeMail
             </head>
 
             <body>
-              <p>#{Body.text}</p>
+              #{Array.new(5).map { "<p>#{Body.text}</<p>" }.join("\n")}
             </body>
             </html>
       )
     end
 
     def self.text
-      Faker::Lorem.sentences.join('')
+      Faker::Quotes::Shakespeare.hamlet
     end
   end
 end
