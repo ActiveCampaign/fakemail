@@ -26,7 +26,7 @@ module FakeMail
             </head>
 
             <body>
-              #{Array.new(5).map { "<p>#{Body.text}</<p>" }.join("\n")}
+              #{Array.new(5).map { "<p>#{Body.text}</p>" }.join("\n")}
             </body>
             </html>
       )
