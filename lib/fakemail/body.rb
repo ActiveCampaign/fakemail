@@ -29,7 +29,7 @@ module FakeMail
               #{Array.new(5).map { "<p>#{Body.text}</p>" }.join("\n")}
             </body>
             </html>
-      )
+      ).strip
     end
 
     def self.text
