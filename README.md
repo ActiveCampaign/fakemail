@@ -7,7 +7,7 @@ It is heavily inspired by the fake data generator tool [Faker](https://github.co
 
 ## Usage
 
-Please see the [wiki](https://github.com/wildbit/fakemail/wiki) for detailed instructions about how to use the tool.
+Please see the [wiki](https://github.com/ActiveCampaign/fakemail/wiki) for detailed instructions about how to use the tool.
 
 ## Installation
 
@@ -16,7 +16,7 @@ You can use the library with a Bundler.
 With Bundler:
 
 ``` ruby
-gem 'fakemail', git: 'https://github.com/wildbit/fakemail.git'
+gem 'fakemail', git: 'https://github.com/ActiveCampaign/fakemail.git'
 ```
 
 ## Issues & Comments
@@ -26,8 +26,4 @@ Please leave all comments, bugs, requests and issues on the Issues page.
 
 ## License
 
-FakeMail library is released under the [MIT](http://www.opensource.org/licenses/mit-license.php) license. 
-
-## Copyright
-
-Copyright © 2020 Wildbit LLC.
+FakeMail library is released under the [MIT](http://www.opensource.org/licenses/mit-license.php) license.
