@@ -11,14 +11,14 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.authors     = ['Igor Balos']
-  s.email       = ['ibalosh@gmail.com', 'igor@wildbit.com']
+  s.email       = ['ibalosh@gmail.com', 'ibalos@activecampaign.com']
 
   s.summary     = 'Email content builder tool.'
   s.description = 'Email content builder tool.'
 
   s.files       = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   s.test_files  = `git ls-files -- {spec}/*`.split("\n")
-  s.homepage    = 'https://github.com/wildbit/fakemail'
+  s.homepage    = 'https://github.com/ActiveCampaign/fakemail.git'
   s.require_paths = ['lib']
   s.required_rubygems_version = '>= 2.6.0'
   s.add_dependency 'secure_yaml'
