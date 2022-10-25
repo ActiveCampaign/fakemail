@@ -7,8 +7,8 @@ module FakeMail
       def email(options)
         mail = build_base_email(options)
         set_body(mail, options[:body], options[:text_part], options[:html_part])
-        Attachment.add_attachment_files(mail, options[:attachment_files])
-        Attachment.add_attachment_contents(mail, options[:attachment_contents])
+        Attachment.add_attachments_by_filename(mail, options[:attachment_files])
+        Attachment.add_attachments_by_content(mail, options[:attachments])
         mail
       end
 

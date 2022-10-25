@@ -4,17 +4,16 @@ module FakeMail
   # Attachments helper
   class Attachment
     class << self
-      def add_attachment_contents(email, name_content = {})
-        return if name_content.nil?
-
-        name_content.each { |hash| email.attachments[hash['Name']] = hash['Value'] }
+      def add_attachments_by_content(email, attachments = [])
+        attachments.to_a.each { |h| add_attachment_by_content(email, h[:name], h[:value]) }
       end
 
-      def add_attachment_content(email, filename, content)
-        email.attachments[filename] = content
+      def add_attachment_by_content(email, filename, data)
+        # check Mail::Message.attachments for details
+        email.attachments[filename] = data
       end
 
-      def add_attachment_files(email, files)
+      def add_attachments_by_filename(email, files)
         return if files.nil? || files.empty?
 
         Array(files).each do |path|
