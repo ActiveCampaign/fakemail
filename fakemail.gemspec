@@ -21,10 +21,10 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/ActiveCampaign/fakemail.git'
   s.require_paths = ['lib']
   s.required_rubygems_version = '>= 2.6.0'
-  s.add_dependency 'secure_yaml'
   s.add_dependency 'faker'
-  s.add_dependency 'mail','>= 2.7.1'
+  s.add_dependency 'mail', '>= 2.7.1'
   s.add_dependency 'postmark', '>= 1.21.1'
+  s.add_dependency 'secure_yaml'
   s.add_dependency 'wbconfigurator'
 
   s.add_development_dependency 'pry'

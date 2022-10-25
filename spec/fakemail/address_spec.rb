@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe FakeMail::Address do
@@ -9,12 +11,18 @@ describe FakeMail::Address do
 
   it '.address extended length' do
     address_parts = address.split('@')
-    expect(subject.class.address(address: address, length: 20)).to match(/#{address_parts[0]}.{4}@#{address_parts[1]}/)
+    aggregate_failures do
+      expect(subject.class.address(address: address, length: 50)).to match(/#{address_parts[0]}+.+@#{address_parts[1]}/)
+      expect(subject.class.address(address: address, length: 50).size).to eq(50)
+    end
   end
 
   it '.address extended length - very long' do
     address_parts = address.split('@')
-    expect(subject.class.address(address: address, length: 250)).
-        to match(/#{address_parts[0]}.{234}@#{address_parts[1]}/)
+    aggregate_failures do
+      expect(subject.class.address(address: address, length: 250))
+        .to match(/#{address_parts[0]}+.+@#{address_parts[1]}/)
+      expect(subject.class.address(address: address, length: 250).size).to eq(250)
+    end
   end
 end

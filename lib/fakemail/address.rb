@@ -14,7 +14,7 @@ module FakeMail
         Array.new(count) { address(address: address, length: length) }
       end
 
-      def addresses_string(address: Config.defaults.email_address, string_length:)
+      def addresses_string(string_length:, address: Config.defaults.email_address)
         address_length = 120
         email_count = string_length / address_length
         addresses = addresses(length: address_length, address: address, count: email_count).join(',')
@@ -60,7 +60,7 @@ module FakeMail
         end
       end
 
-      def addresses_with_name_string(address: Config.defaults.email_address, string_length:)
+      def addresses_with_name_string(string_length:, address: Config.defaults.email_address)
         address_length = 120
         email_count = string_length / address_length
         addresses = addresses_with_name(address: address, address_length: address_length,

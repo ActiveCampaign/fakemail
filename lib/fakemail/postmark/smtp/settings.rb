@@ -37,18 +37,18 @@ module FakeMail
           end
 
           TRACK_LINK_VALUES = {
-              html_and_text: 'HtmlAndText',
-              html_only: 'HtmlOnly',
-              text_only: 'TextOnly',
-              none: 'None'
+            html_and_text: 'HtmlAndText',
+            html_only: 'HtmlOnly',
+            text_only: 'TextOnly',
+            none: 'None'
           }.freeze
 
           HEADER_NAMES = {
-              TAG: 'X-PM-Tag',
-              METADATA: 'X-PM-MetaData',
-              TRACK_LINKS: 'X-PM-TrackLinks',
-              TRACK_OPENS: 'X-PM-TrackOpens',
-              MESSAGE_STREAM: 'X-PM-Message-Stream'
+            TAG: 'X-PM-Tag',
+            METADATA: 'X-PM-MetaData',
+            TRACK_LINKS: 'X-PM-TrackLinks',
+            TRACK_OPENS: 'X-PM-TrackOpens',
+            MESSAGE_STREAM: 'X-PM-Message-Stream'
           }.freeze
         end
       end
