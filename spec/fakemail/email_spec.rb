@@ -29,6 +29,7 @@ describe FakeMail::Email do
 
       aggregate_failures do
         expect(email.attachments.size).to eq(2)
+        expect(email.html_part.body.to_s).to eq('test')
         expect(email.attachments.map { |a| a.filename }).to match_array(%w[test1.txt test2.txt])
       end
     end

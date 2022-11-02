@@ -6,7 +6,7 @@ module FakeMail
     class << self
       def email(options)
         mail = build_base_email(options)
-        set_body(mail, options[:body], options[:text_part], options[:html_part])
+        set_body(part_to_append_body_to(mail, options), options[:body], options[:text_part], options[:html_part])
         Attachment.add_attachments_by_filename(mail, options[:attachment_files])
         Attachment.add_attachments_by_content(mail, options[:attachments])
         mail
@@ -31,19 +31,25 @@ module FakeMail
         mail.to == Address.address if mail.to || mail.cc || mail.bcc
       end
 
-      def set_body(mail, body, text_part, html_part)
+      def part_to_append_body_to(mail, options)
+        mail_or_part = mail
+        mail.part { |part| mail_or_part = part } if options.keys.to_s.include?('attachment')
+        mail_or_part
+      end
+
+      def set_body(mail_or_part, body, text_part, html_part)
         if html_part.nil? && text_part.nil?
-          mail.body = body || Body.html
-          mail.content_type = 'text/html; charset=UTF-8'
+          mail_or_part.body = body || Body.html
+          mail_or_part.content_type = 'text/html; charset=UTF-8'
         elsif html_part.nil?
-          mail.body = text_part
-          mail.content_type = 'text/plain; charset=UTF-8'
+          mail_or_part.body = text_part
+          mail_or_part.content_type = 'text/plain; charset=UTF-8'
         elsif text_part.nil?
-          mail.body = html_part
-          mail.content_type = 'text/html; charset=UTF-8'
+          mail_or_part.body = html_part
+          mail_or_part.content_type = 'text/html; charset=UTF-8'
         else
-          mail.html_part = html_part
-          mail.text_part = text_part
+          mail_or_part.html_part = html_part
+          mail_or_part.text_part = text_part
         end
       end
     end
