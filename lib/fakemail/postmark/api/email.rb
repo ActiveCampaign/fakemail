@@ -10,6 +10,7 @@ module FakeMail
         class << self
           def email(options)
             mail = super(options)
+            mail['PM-EMAIL-TYPE'] = 'api'
             Settings.tag(mail, options[:tag])
             Settings.metadata(mail, options[:metadata])
             Settings.message_stream(mail, options[:message_stream])
