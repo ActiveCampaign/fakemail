@@ -4,38 +4,38 @@ module FakeMail
   # Recipient helper
   class Address
     class << self
-      def address(address: Config.defaults.email_address, length: 0)
+      def address(address: DEFAULTS[:email_address], length: 0)
         return address unless length.to_i > address.size
 
         address_with_id(address: address, id: Faker::Lorem.characters(number: length - address.size - 1))
       end
 
-      def addresses(address: Config.defaults.email_address, length: 0, count: 1)
+      def addresses(address: DEFAULTS[:email_address], length: 0, count: 1)
         Array.new(count) { address(address: address, length: length) }
       end
 
-      def addresses_string(string_length:, address: Config.defaults.email_address)
+      def addresses_string(string_length:, address: DEFAULTS[:email_address])
         address_length = 120
         email_count = string_length / address_length
         addresses = addresses(length: address_length, address: address, count: email_count).join(',')
         "#{addresses},#{address(length: string_length - addresses.size - 1, address: address)}"
       end
 
-      def address_unique(address: Config.defaults.email_address, id_length: 8, base_id: '')
+      def address_unique(address: DEFAULTS[:email_address], id_length: 8, base_id: '')
         id = Faker::Number.number(digits: id_length)
         id = base_id.empty? ? id : "#{base_id}-#{id}"
         address_with_id(address: address, id: id)
       end
 
-      def addresses_unique(address: Config.defaults.email_address, id_length: 8, base_id: '', count: 0)
+      def addresses_unique(address: DEFAULTS[:email_address], id_length: 8, base_id: '', count: 0)
         Array.new(count) { address_unique(address: address, id_length: id_length, base_id: base_id) }
       end
 
-      def addresses_with_id(address: Config.defaults.email_address, id: '', count: 1)
+      def addresses_with_id(address: DEFAULTS[:email_address], id: '', count: 1)
         Array.new(count).map { address.gsub('@', "+#{id}-#{Faker::Number.number(digits: 8)}@") }
       end
 
-      def address_with_id(address: Config.defaults.email_address, id: '')
+      def address_with_id(address: DEFAULTS[:email_address], id: '')
         address.gsub('@', "+#{id}@")
       end
 
@@ -47,20 +47,19 @@ module FakeMail
 
       # Generate email address with custom full name and email address
       # lengths from existing address
-      def address_with_name(address: Config.defaults.email_address, full_name_length: 60, address_length: 120)
+      def address_with_name(address: DEFAULTS[:email_address], full_name_length: 60, address_length: 120)
         address_placeholder = "'#{full_name(length: full_name_length)}' <>"
         email_address = address(address: address, length: address_length - address_placeholder.size)
         address_placeholder.gsub('<', "<#{email_address}")
       end
 
-      def addresses_with_name(address: Config.defaults.email_address, full_name_length: 60, address_length: 120,
-                              count: 1)
+      def addresses_with_name(address: DEFAULTS[:email_address], full_name_length: 60, address_length: 120, count: 1)
         Array.new(count) do
           address_with_name(address: address, full_name_length: full_name_length, address_length: address_length)
         end
       end
 
-      def addresses_with_name_string(string_length:, address: Config.defaults.email_address)
+      def addresses_with_name_string(string_length:, address: DEFAULTS[:email_address])
         address_length = 120
         email_count = string_length / address_length
         addresses = addresses_with_name(address: address, address_length: address_length,

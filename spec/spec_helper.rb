@@ -4,7 +4,6 @@ require 'rspec'
 require 'mail'
 require 'postmark'
 require 'pry'
-require 'configurator'
 require 'fakemail'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))

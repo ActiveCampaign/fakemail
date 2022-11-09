@@ -2,7 +2,6 @@
 
 Dir["#{File.dirname(__FILE__)}/**/*.rb"].sort.each { |f| require f }
 
-require 'configurator'
 require 'pry'
 require 'faker'
 require 'postmark'
@@ -13,22 +12,9 @@ module FakeMail
     SENDING_TYPES = %i[api smtp].freeze
   end
 
-  # Default config
-  class Config
-    @defaults = nil
-    @locale = nil
-
-    class << self
-      def defaults
-        App.config.files_path = File.join(File.dirname(__FILE__), '../config')
-        @defaults || App.config.load!(:defaults)
-      end
-
-      def locale=(value)
-        Faker::Config.locale = value
-      end
-    end
-  end
+  DEFAULTS = {
+    email_address: 'john@example.com'
+  }
 
   class << self
     def build_email(options = {})

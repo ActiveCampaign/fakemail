@@ -9,6 +9,17 @@ describe FakeMail::Address do
     expect(subject.class.address(address: address)).to eq(address)
   end
 
+  it '.address - default' do
+    expect(subject.class.address).not_to be nil
+    expect(subject.class.address).to eq(FakeMail::DEFAULTS[:email_address])
+  end
+
+  it '.address - default' do
+    email_address = 'test@test.com'
+    FakeMail::DEFAULTS[:email_address] = email_address
+    expect(subject.class.address).to eq(email_address)
+  end
+
   it '.address extended length' do
     address_parts = address.split('@')
     aggregate_failures do

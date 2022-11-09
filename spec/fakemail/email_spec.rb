@@ -9,8 +9,8 @@ describe FakeMail::Email do
 
   context 'attachments' do
     it '.email - load attachments from files' do
-      filename = 'defaults.yaml'
-      files = [File.join(File.dirname(__FILE__), "../../lib/config/#{filename}")]
+      filename = 'README.md'
+      files = [File.join(File.dirname(__FILE__), "../../#{filename}")]
       email = subject.class.email(body: 'test', attachment_files: files)
 
       aggregate_failures do
