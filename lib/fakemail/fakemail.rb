@@ -17,6 +17,25 @@ module FakeMail
   }
 
   class << self
+    # options that can be passed to fakemail
+    # ------------------------
+    ## postmark options
+    # ------------------------
+    # extended_for_postmark: true - email will be modified for postmark
+    # sending_type: :api - adjust email for postmark api, goes with above
+    # ------------------------
+    # email general options
+    # ------------------------
+    # body: content - any body
+    # html_part: content - html body
+    # text_part: content - text body
+    # from: address
+    # to:,cc:,bcc: address
+    # reply_to: address
+    # subject: value
+    # attachment_files: ['file1', 'file2']
+    # attachments: [{name: 'file1', value: 'content'}]
+
     def build_email(options = {})
       return build_pm_email(options) if options.keys.include?(:extended_for_postmark)
 
