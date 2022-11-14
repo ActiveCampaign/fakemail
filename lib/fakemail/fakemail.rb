@@ -13,6 +13,8 @@ module FakeMail
   end
 
   DEFAULTS = {
+    to: 'to@example.com',
+    from: 'from@example.com',
     email_address: 'john@example.com'
   }
 
@@ -21,7 +23,7 @@ module FakeMail
     # ------------------------
     ## postmark options
     # ------------------------
-    # extended_for_postmark: true - email will be modified for postmark
+    # extended_for_postmark: :api (or :smtp) - email will be modified for postmark
     # sending_type: :api - adjust email for postmark api, goes with above
     # ------------------------
     # email general options
@@ -45,7 +47,7 @@ module FakeMail
     private
 
     def build_pm_email(options = {})
-      build_send_type(options.delete(:sending_type)).email(options)
+      build_send_type(options.delete(:extended_for_postmark)).email(options)
     end
 
     def build_send_type(type)

@@ -7,6 +7,51 @@ describe FakeMail::Email do
     expect(subject.class.email(body: 'test').body.to_s).to eq('test')
   end
 
+  it '.email - default from address' do
+    aggregate_failures do
+      expect(subject.class.email(body: 'test')[:from].to_s).not_to be nil
+      expect(subject.class.email(body: 'test')[:from].to_s).to eq(FakeMail::DEFAULTS[:from])
+    end
+  end
+
+  it '.email - custom default from address' do
+    FakeMail::DEFAULTS[:from] = 'defaults_custom@example.com'
+    expect(subject.class.email(body: 'test')[:from].to_s).to eq('defaults_custom@example.com')
+  end
+
+  it '.email - custom from address' do
+    expect(subject.class.email(from: 'custom@example.com')[:from].to_s).to eq('custom@example.com')
+  end
+
+  it '.email - default to address' do
+    aggregate_failures do
+      expect(subject.class.email(body: 'test')[:to].to_s).not_to be nil
+      expect(subject.class.email(body: 'test')[:to].to_s).to eq(FakeMail::DEFAULTS[:to])
+    end
+  end
+
+  it '.email - custom default to address' do
+    FakeMail::DEFAULTS[:to] = 'defaults_custom_to@example.com'
+    expect(subject.class.email(body: 'test')[:to].to_s).to eq('defaults_custom_to@example.com')
+  end
+
+  it '.email - custom to address' do
+    FakeMail::DEFAULTS[:to] = 'defaults_custom_to@example.com'
+    expect(subject.class.email(body: 'test', to: 'test@example.com')[:to].to_s).to eq('test@example.com')
+  end
+
+  # if any recipient is specified, default to: recipient is not used
+  it '.email - custom cc address' do
+    FakeMail::DEFAULTS[:to] = 'defaults_custom_to@example.com'
+
+    email = subject.class.email(body: 'test', cc: 'testcc@example.com')
+    aggregate_failures do
+      expect(email.to).to be_empty
+      expect(email.bcc).to be_empty
+      expect(email[:cc].to_s).to eq('testcc@example.com')
+    end
+  end
+
   context 'attachments' do
     it '.email - load attachments from files' do
       filename = 'README.md'

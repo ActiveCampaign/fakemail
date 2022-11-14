@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe FakeMail::Address do
-  let(:address) { 'ibalos@activecampaign.com' }
+  let(:address) { 'ibalosh@example.com' }
 
   it '.address' do
     expect(subject.class.address(address: address)).to eq(address)

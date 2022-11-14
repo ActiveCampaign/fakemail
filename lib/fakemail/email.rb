@@ -18,7 +18,7 @@ module FakeMail
         mail = Mail.new
         mail['SENT-AT-DATE'] = Time.now.strftime '%a, %d %b %Y %H:%M:%S %z'
         mail.subject = options[:subject] || Subject.subject
-        mail.from = options[:from] || Address.address
+        mail.from = options[:from] || DEFAULTS[:from]
         mail.reply_to = options[:reply_to]
         build_recipients(mail, options)
         mail
@@ -28,7 +28,8 @@ module FakeMail
         mail.to = options[:to]
         mail.cc = options[:cc]
         mail.bcc = options[:bcc]
-        mail.to == Address.address if mail.to || mail.cc || mail.bcc
+
+        mail.to = DEFAULTS[:to] if mail.to.empty? && mail.cc.empty? && mail.bcc.empty?
       end
 
       def part_to_append_body_to(mail, options)
