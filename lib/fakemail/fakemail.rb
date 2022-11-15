@@ -31,6 +31,7 @@ module FakeMail
     # body: content - any body
     # html_part: content - html body
     # text_part: content - text body
+    # text_and_html: true - add default text and html content
     # from: address
     # to:,cc:,bcc: address
     # reply_to: address
@@ -39,12 +40,19 @@ module FakeMail
     # attachments: [{name: 'file1', value: 'content'}]
 
     def build_email(options = {})
+      set_default_multipart_bodies(options) if options.delete(:text_and_html)
       return build_pm_email(options) if options.keys.include?(:extended_for_postmark)
 
       FakeMail::Email.email(options)
     end
 
     private
+
+    def set_default_multipart_bodies(options)
+      options[:html_part] = options[:html_part] || 'html part'
+      options[:text_part] = options[:text_part] || 'text part'
+      options
+    end
 
     def build_pm_email(options = {})
       build_send_type(options.delete(:extended_for_postmark)).email(options)
