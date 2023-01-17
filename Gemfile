@@ -3,8 +3,8 @@
 source 'https://rubygems.org'
 
 gem 'faker'
-gem 'mail'
-gem 'postmark', '~>1.21.1'
+gem 'mail','~>2.7.0'
+gem 'postmark', '~>1'
 
 group :test do
   gem 'pry'

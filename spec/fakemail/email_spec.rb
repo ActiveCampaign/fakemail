@@ -46,8 +46,8 @@ describe FakeMail::Email do
 
     email = subject.class.email(body: 'test', cc: 'testcc@example.com')
     aggregate_failures do
-      expect(email.to).to be_nil
-      expect(email.bcc).to be_nil
+      expect(email.to).to be_empty
+      expect(email.bcc).to be_empty
       expect(email[:cc].to_s).to eq('testcc@example.com')
     end
   end

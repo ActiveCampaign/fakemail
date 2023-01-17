@@ -29,7 +29,14 @@ module FakeMail
         mail.cc = options[:cc]
         mail.bcc = options[:bcc]
 
-        mail.to = DEFAULTS[:to] if mail.to.nil? && mail.cc.nil? && mail.bcc.nil?
+        mail.to = DEFAULTS[:to] if no_specified_recipients?(mail)
+      end
+
+      def no_specified_recipients?(mail)
+        # address is converted to array so that it supports both:
+        # mail gem before version 2.8 (which returns array)
+        # mail gem after 2.8 (returns nil or array)
+        mail.to.to_a.empty? && mail.cc.to_a.empty? && mail.bcc.to_a.empty?
       end
 
       def part_to_append_body_to(mail, options)
