@@ -29,7 +29,7 @@ module FakeMail
         mail.cc = options[:cc]
         mail.bcc = options[:bcc]
 
-        mail.to = DEFAULTS[:to] if mail.to.empty? && mail.cc.empty? && mail.bcc.empty?
+        mail.to = DEFAULTS[:to] if mail.to.nil? && mail.cc.nil? && mail.bcc.nil?
       end
 
       def part_to_append_body_to(mail, options)
