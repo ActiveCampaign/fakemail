@@ -36,7 +36,7 @@ module FakeMail
         # address is converted to array so that it supports both:
         # mail gem before version 2.8 (which returns array)
         # mail gem after 2.8 (returns nil or array)
-        mail.to.empty? && mail.cc.empty? && mail.bcc.empty?
+        mail.to.nil? && mail.cc.nil? && mail.bcc.nil?
       end
 
       def part_to_append_body_to(mail, options)
